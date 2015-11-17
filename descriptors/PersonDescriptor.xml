@@ -20,12 +20,21 @@
         <name>patterns</name>
         <value>
           <array>
-            <string>created by ([A-z]* [A-z]*)</string>
-            <string>created by [A-z]* [A-z]* \( and ([A-z]* [A-z]*)</string>
-            <string>screenwriter[s]? ([A-z]* [A-z]*)</string>
-            <string>cinematographer(?: ,)? ([A-z]* [A-z]*)</string>
-            <string>oscar winner ([A-z]* [A-z]*)</string>
-            </array>
+            <string>created/VBN by/IN ([A-z]*)/NN ([A-z]*)/NN</string>
+            <string>created/VBN by/IN [A-z]*/NN [A-z]*/NN \(/-LRB- and/CC ([A-z]*)/JJ ([A-z]*)/</string>
+            <string>screenwriter[s]?/NN[S]? ([A-z]*)/(?:NN[S]?|JJ) ([A-z]*)/(?:NN|JJ)</string>
+            <string>cinematographer/NN(?: ,/,)? ([A-z]*)/NN ([A-z]*)/NN</string>
+            <string>cinematographer/NN(?: ,/,)? ([A-z]*)/NN ([A-z]*)/IN ([A-z]*)/NN</string>
+            <string>oscar/NN winner/NN ([A-z]*)/VBG ([A-z]*)/NNS</string>
+            <string>played/VBN by/IN ([A-z]*)/VBD ([A-z]*)/NN</string>
+            <string>([A-z]*)/NN ([A-z]*)/NNS plays/VBZ [A-z]*/JJ [A-z]*/NN</string>
+            <string>[A-z]*/NN [A-z]*/NNS plays/VBZ ([A-z]*)/JJ ([A-z]*)/NN</string>
+            <string>, plays/VBZ ([A-z]*)/NN</string>
+            <string>./. ([A-z]*)/NN plays/VBZ</string>
+            <string>([A-z]*)/NN ([A-z]*)/NN plays/VBZ the/DT</string>
+            <string>([A-z]*)/NN plays/VBZ the/DT</string>
+            <string>starring/VBG ([A-z]*)/NN ([A-z]*)/NN</string>
+          </array>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
