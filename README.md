@@ -1,6 +1,6 @@
-#UIMA: Annotating Movite Reviews
+#UIMA: Annotating Movie Reviews
 
-Using UIMA to annotate names of cinematographers in movie reviews
+Using UIMA to annotate names of cinematographers, actors and characters in movie reviews
 
 
 ##Data Set
