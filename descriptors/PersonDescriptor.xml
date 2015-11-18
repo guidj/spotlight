@@ -40,7 +40,12 @@
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import location="PersonTypeSystem.xml"/>
+        <import location="/Users/guilherme/code/617/spotlight/descriptors/types/ActorTypeSystem.xml"/>
+      <import location="/Users/guilherme/code/617/spotlight/descriptors/types/CinematographerTypeSystem.xml"/>
+        <import location="/Users/guilherme/code/617/spotlight/descriptors/types/DirectorTypeSystem.xml"/>
+        <import location="/Users/guilherme/code/617/spotlight/descriptors/types/FictionalCharacterType.xml"/>
+        <import location="/Users/guilherme/code/617/spotlight/descriptors/types/ScreenwriterTypeSystem.xml"/>
+        <import location="/Users/guilherme/code/617/spotlight/descriptors/types/PersonTypeSystem.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

@@ -106,21 +106,38 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 		this.posAid = new POSAid(model, tagger, sentenceDetector);
 	}
-	
-	private String getKindOfPerson(String patternString) {
-		System.out.println("patternString: " + patternString);
+
+	private enum PersonType {
+
+		ACTOR("Actor"), DIRECTOR("Director"), CINEMATOGRAPHER("Cinematographer"), SCREENWRITER(
+				"Screenwriter"), FICTIONAL_CHARACTER("FictionalCharacter"), UNKNOWN(
+				"Unknown");
+
+		private final String type;
+
+		PersonType(String type) {
+			this.type = type;
+		}
+
+		private String type() {
+			return type;
+		}
+	}
+
+	private PersonType getPersonType(String patternString) {
 		if (patternString.contains("created/VBN by/IN")) {
-			return "Director";
+			return PersonType.DIRECTOR;
 		} else if (patternString.contains("screenwriter[s]?/NN[S]?")) {
-			return "Screenwriter";
+			return PersonType.SCREENWRITER;
 		} else if (patternString.contains("cinematographer/NN(?: ,/,)?")) {
-			return "Cinematographer";
-		} else if (patternString.contains("played/VBN by/IN") || patternString.contains("([A-z]*)/NNS plays/VBZ")) {
-			return "Actor";
+			return PersonType.CINEMATOGRAPHER;
+		} else if (patternString.contains("played/VBN by/IN")
+				|| patternString.contains("([A-z]*)/NNS plays/VBZ")) {
+			return PersonType.ACTOR;
 		} else if (patternString.contains("[A-z]*/NN [A-z]*/NNS plays/VBZ")) {
-			return "FictionalCharactor";
+			return PersonType.FICTIONAL_CHARACTER;
 		} else {
-			return null;
+			return PersonType.UNKNOWN;
 		}
 	}
 
@@ -132,46 +149,102 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 		String[] sentences = posAid.getSentenceDetector().sentDetect(docText);
 		Matcher matcher;
-		
+
 		int startOffset;
 		String name;
-		
+		PersonType personType;
+
 		for (String sentence : sentences) {
-			
+
 			startOffset = docText.indexOf(sentence);
-			
+
 			String words[] = WhitespaceTokenizer.INSTANCE.tokenize(sentence);
 			String[] tags = posAid.getTagger().tag(words);
 
 			String[] taggedWords = Text.joinByToken(words, tags, "/");
 			String annotatedSentence = String.join(" ", taggedWords);
-			
+
 			for (Pattern pattern : this.patterns) {
 
 				matcher = pattern.matcher(annotatedSentence);
 
 				while (matcher.find()) {
 					StringBuilder personNameSB = new StringBuilder();
-					
-					for(int i= 1; i <= matcher.groupCount(); i++) {
+
+					for (int i = 1; i <= matcher.groupCount(); i++) {
 						personNameSB.append(matcher.group(i));
 						if (i != matcher.groupCount()) {
 							personNameSB.append(" ");
 						}
 					}
-					
+
 					name = personNameSB.toString();
+					personType = getPersonType(pattern.toString());
 
-					Person personAnnotation = new Person(arg0);
+					switch (personType) {
+					case ACTOR:
+						Actor actorAnnotation = new Actor(arg0);
+						actorAnnotation.setBegin(sentence.indexOf(name)
+								+ startOffset);
+						actorAnnotation.setEnd(sentence.indexOf(name)
+								+ startOffset + name.length());
+						actorAnnotation.setName(personNameSB.toString());
+						actorAnnotation.addToIndexes(arg0);
+						break;
+					case DIRECTOR:
+						Director directorAnnotation = new Director(arg0);
+						directorAnnotation.setBegin(sentence.indexOf(name)
+								+ startOffset);
+						directorAnnotation.setEnd(sentence.indexOf(name)
+								+ startOffset + name.length());
+						directorAnnotation.setName(personNameSB.toString());
+						directorAnnotation.addToIndexes(arg0);
+						break;
+					case CINEMATOGRAPHER:
+						Cinematographer cinematographerAnnotation = new Cinematographer(
+								arg0);
+						cinematographerAnnotation.setBegin(sentence
+								.indexOf(name) + startOffset);
+						cinematographerAnnotation.setEnd(sentence.indexOf(name)
+								+ startOffset + name.length());
+						cinematographerAnnotation.setName(personNameSB
+								.toString());
+						cinematographerAnnotation.addToIndexes(arg0);
+						break;
+					case SCREENWRITER:
+						Screenwriter screenwriterAnnotation = new Screenwriter(
+								arg0);
+						screenwriterAnnotation.setBegin(sentence.indexOf(name)
+								+ startOffset);
+						screenwriterAnnotation.setEnd(sentence.indexOf(name)
+								+ startOffset + name.length());
+						screenwriterAnnotation.setName(personNameSB.toString());
+						screenwriterAnnotation.addToIndexes(arg0);
+						break;
+					case FICTIONAL_CHARACTER:
+						FictionalCharacter fictionalCharacterAnnotation = new FictionalCharacter(
+								arg0);
+						fictionalCharacterAnnotation.setBegin(sentence
+								.indexOf(name) + startOffset);
+						fictionalCharacterAnnotation.setEnd(sentence
+								.indexOf(name) + startOffset + name.length());
+						fictionalCharacterAnnotation.setName(personNameSB
+								.toString());
+						fictionalCharacterAnnotation.addToIndexes(arg0);
+						break;
+					default:
+						Person personAnnotation = new Person(arg0);
+						personAnnotation.setBegin(sentence.indexOf(name)
+								+ startOffset);
+						personAnnotation.setEnd(sentence.indexOf(name)
+								+ startOffset + name.length());
+						personAnnotation.setName(personNameSB.toString());
+						personAnnotation.addToIndexes(arg0);
+						break;
+					}
 
-					personAnnotation.setBegin(sentence.indexOf(name) + startOffset);
-					personAnnotation.setEnd(sentence.indexOf(name) + startOffset + name.length());
-					personAnnotation.setName(personNameSB.toString());
-					personAnnotation.setKind(getKindOfPerson(pattern.toString()));
-
-					personAnnotation.addToIndexes(arg0);
 				}
-			}			
+			}
 
 		}
 

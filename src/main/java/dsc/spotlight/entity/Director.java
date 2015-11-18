@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Wed Nov 18 11:13:36 CET 2015 */
+/* First created by JCasGen Wed Nov 18 12:46:09 CET 2015 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas; 
@@ -14,12 +14,12 @@ import org.apache.uima.jcas.tcas.Annotation;
  * Updated by JCasGen Wed Nov 18 13:13:33 CET 2015
  * XML source: /Users/guilherme/code/617/spotlight/descriptors/PersonDescriptor.xml
  * @generated */
-public class Person extends Annotation {
+public class Director extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(Person.class);
+  public final static int typeIndexID = JCasRegistry.register(Director.class);
   /** @generated
    * @ordered 
    */
@@ -33,14 +33,14 @@ public class Person extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected Person() {/* intentionally empty block */}
+  protected Director() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public Person(int addr, TOP_Type type) {
+  public Director(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -48,7 +48,7 @@ public class Person extends Annotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public Person(JCas jcas) {
+  public Director(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -58,7 +58,7 @@ public class Person extends Annotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public Person(JCas jcas, int begin, int end) {
+  public Director(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -74,28 +74,26 @@ public class Person extends Annotation {
    */
   private void readObject() {/*default - does nothing empty block */}
      
- 
-    
   //*--------------*
   //* Feature: name
 
-  /** getter for name - gets Name of a person
+  /** getter for name - gets 
    * @generated
    * @return value of the feature 
    */
   public String getName() {
-    if (Person_Type.featOkTst && ((Person_Type)jcasType).casFeat_name == null)
-      jcasType.jcas.throwFeatMissing("name", "dsc.spotlight.entity.Person");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Person_Type)jcasType).casFeatCode_name);}
+    if (Director_Type.featOkTst && ((Director_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "dsc.spotlight.entity.Director");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Director_Type)jcasType).casFeatCode_name);}
     
-  /** setter for name - sets Name of a person 
+  /** setter for name - sets  
    * @generated
    * @param v value to set into the feature 
    */
   public void setName(String v) {
-    if (Person_Type.featOkTst && ((Person_Type)jcasType).casFeat_name == null)
-      jcasType.jcas.throwFeatMissing("name", "dsc.spotlight.entity.Person");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Person_Type)jcasType).casFeatCode_name, v);}    
+    if (Director_Type.featOkTst && ((Director_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "dsc.spotlight.entity.Director");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Director_Type)jcasType).casFeatCode_name, v);}    
   }
 
     

@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Wed Nov 18 11:13:36 CET 2015 */
+/* First created by JCasGen Wed Nov 18 12:46:09 CET 2015 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas;
@@ -16,7 +16,7 @@ import org.apache.uima.jcas.tcas.Annotation_Type;
 /** 
  * Updated by JCasGen Wed Nov 18 13:13:33 CET 2015
  * @generated */
-public class Person_Type extends Annotation_Type {
+public class Cinematographer_Type extends Annotation_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -26,26 +26,28 @@ public class Person_Type extends Annotation_Type {
   private final FSGenerator fsGenerator = 
     new FSGenerator() {
       public FeatureStructure createFS(int addr, CASImpl cas) {
-  			 if (Person_Type.this.useExistingInstance) {
+  			 if (Cinematographer_Type.this.useExistingInstance) {
   			   // Return eq fs instance if already created
-  		     FeatureStructure fs = Person_Type.this.jcas.getJfsFromCaddr(addr);
+  		     FeatureStructure fs = Cinematographer_Type.this.jcas.getJfsFromCaddr(addr);
   		     if (null == fs) {
-  		       fs = new Person(addr, Person_Type.this);
-  			   Person_Type.this.jcas.putJfsFromCaddr(addr, fs);
+  		       fs = new Cinematographer(addr, Cinematographer_Type.this);
+  			   Cinematographer_Type.this.jcas.putJfsFromCaddr(addr, fs);
   			   return fs;
   		     }
   		     return fs;
-        } else return new Person(addr, Person_Type.this);
+        } else return new Cinematographer(addr, Cinematographer_Type.this);
   	  }
     };
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = Person.typeIndexID;
+  public final static int typeIndexID = Cinematographer.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("dsc.spotlight.entity.Person");
- 
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("dsc.spotlight.entity.Cinematographer");
+
+
+
   /** @generated */
   final Feature casFeat_name;
   /** @generated */
@@ -56,7 +58,7 @@ public class Person_Type extends Annotation_Type {
    */ 
   public String getName(int addr) {
         if (featOkTst && casFeat_name == null)
-      jcas.throwFeatMissing("name", "dsc.spotlight.entity.Person");
+      jcas.throwFeatMissing("name", "dsc.spotlight.entity.Cinematographer");
     return ll_cas.ll_getStringValue(addr, casFeatCode_name);
   }
   /** @generated
@@ -65,7 +67,7 @@ public class Person_Type extends Annotation_Type {
    */    
   public void setName(int addr, String v) {
         if (featOkTst && casFeat_name == null)
-      jcas.throwFeatMissing("name", "dsc.spotlight.entity.Person");
+      jcas.throwFeatMissing("name", "dsc.spotlight.entity.Cinematographer");
     ll_cas.ll_setStringValue(addr, casFeatCode_name, v);}
     
   
@@ -77,7 +79,7 @@ public class Person_Type extends Annotation_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public Person_Type(JCas jcas, Type casType) {
+  public Cinematographer_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
