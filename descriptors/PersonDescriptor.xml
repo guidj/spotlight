@@ -14,6 +14,18 @@
         <multiValued>true</multiValued>
         <mandatory>true</mandatory>
       </configurationParameter>
+    <configurationParameter>
+        <name>modelMEFilePath</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>sentenceMEFilePath</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
@@ -35,6 +47,18 @@
             <string>([A-z]*)/NN plays/VBZ the/DT</string>
             <string>starring/VBG ([A-z]*)/NN ([A-z]*)/NN</string>
           </array>
+        </value>
+      </nameValuePair>
+    <nameValuePair>
+        <name>modelMEFilePath</name>
+        <value>
+          <string>/Users/guilherme/code/617/spotlight/resources/POS/en-pos-maxent.bin</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>sentenceMEFilePath</name>
+        <value>
+          <string>/Users/guilherme/code/617/spotlight/resources/POS/en-sent.bin</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

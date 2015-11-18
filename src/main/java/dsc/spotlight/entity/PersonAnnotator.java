@@ -75,6 +75,10 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 		String[] patternStrings = (String[]) aContext
 				.getConfigParameterValue("patterns");
+		String modelMEFilePath = (String) aContext
+				.getConfigParameterValue("modelMEFilePath");
+		String sentenceMEFilePath = (String) aContext
+				.getConfigParameterValue("sentenceMEFilePath");
 
 		this.patterns = new ArrayList<Pattern>();
 
@@ -84,18 +88,14 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 			System.out.println("\t- " + patternString);
 		}
 
-		POSModel model = new POSModelLoader()
-				.load(new File(
-						"/Users/guilherme/code/617/spotlight/resources/POS/en-pos-maxent.bin"));
+		POSModel model = new POSModelLoader().load(new File(modelMEFilePath));
 		POSTaggerME tagger = new POSTaggerME(model);
 
 		SentenceDetectorME sentenceDetector = null;
 
 		try {
-			sentenceDetector = new SentenceDetectorME(
-					new SentenceModel(
-							new File(
-									"/Users/guilherme/code/617/spotlight/resources/POS/en-sent.bin")));
+			sentenceDetector = new SentenceDetectorME(new SentenceModel(
+					new File(sentenceMEFilePath)));
 		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
