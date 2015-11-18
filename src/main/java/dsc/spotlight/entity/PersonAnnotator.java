@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import opennlp.tools.cmdline.PerformanceMonitor;
 import opennlp.tools.cmdline.postag.POSModelLoader;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
@@ -132,45 +131,49 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 		String docText = arg0.getDocumentText();
 
 		String[] sentences = posAid.getSentenceDetector().sentDetect(docText);
-		StringBuilder nameSB = new StringBuilder();
-
+		Matcher matcher;
+		
+		int startOffset;
+		String name;
+		
 		for (String sentence : sentences) {
+			
+			startOffset = docText.indexOf(sentence);
+			
 			String words[] = WhitespaceTokenizer.INSTANCE.tokenize(sentence);
 			String[] tags = posAid.getTagger().tag(words);
 
-			String[] taggedText = Text.joinByToken(words, tags, "/");
+			String[] taggedWords = Text.joinByToken(words, tags, "/");
+			String annotatedSentence = String.join(" ", taggedWords);
+			
+			for (Pattern pattern : this.patterns) {
 
-			nameSB.append(String.join(" ", taggedText));
-			nameSB.append("\n");
-		}
+				matcher = pattern.matcher(annotatedSentence);
 
-		String annotatedText = nameSB.toString();
-
-		for (Pattern pattern : this.patterns) {
-
-			Matcher matcher = pattern.matcher(annotatedText);
-
-			while (matcher.find()) {
-				StringBuilder personName = new StringBuilder();
-				
-				for(int i= 1; i <= matcher.groupCount(); i++) {
-					personName.append(matcher.group(i));
-					if (i != matcher.groupCount()) {
-						personName.append(" ");
+				while (matcher.find()) {
+					StringBuilder personNameSB = new StringBuilder();
+					
+					for(int i= 1; i <= matcher.groupCount(); i++) {
+						personNameSB.append(matcher.group(i));
+						if (i != matcher.groupCount()) {
+							personNameSB.append(" ");
+						}
 					}
+					
+					name = personNameSB.toString();
+
+					Person personAnnotation = new Person(arg0);
+
+					personAnnotation.setBegin(sentence.indexOf(name) + startOffset);
+					personAnnotation.setEnd(sentence.indexOf(name) + startOffset + name.length());
+					personAnnotation.setName(personNameSB.toString());
+					personAnnotation.setKind(getKindOfPerson(pattern.toString()));
+
+					personAnnotation.addToIndexes(arg0);
 				}
+			}			
 
-				System.out.println("Found: " + personName);
-
-				Person personAnnotation = new Person(arg0);
-
-				personAnnotation.setBegin(matcher.start(1));
-				personAnnotation.setEnd(matcher.end(matcher.groupCount()));
-				personAnnotation.setName(personName.toString());
-				personAnnotation.setKind(getKindOfPerson(pattern.toString()));
-
-				personAnnotation.addToIndexes(arg0);
-			}
 		}
+
 	}
 }
