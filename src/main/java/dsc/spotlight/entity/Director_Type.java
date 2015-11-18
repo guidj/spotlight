@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Wed Nov 18 12:46:09 CET 2015 */
+/* First created by JCasGen Wed Nov 18 13:33:32 CET 2015 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas;
@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Nov 18 13:13:33 CET 2015
+ * Updated by JCasGen Wed Nov 18 13:33:32 CET 2015
  * @generated */
 public class Director_Type extends Annotation_Type {
   /** @generated 
@@ -45,9 +45,7 @@ public class Director_Type extends Annotation_Type {
      @modifiable */
   @SuppressWarnings ("hiding")
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("dsc.spotlight.entity.Director");
-
-
-
+ 
   /** @generated */
   final Feature casFeat_name;
   /** @generated */

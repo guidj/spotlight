@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Nov 18 13:13:33 CET 2015
+ * Updated by JCasGen Wed Nov 18 13:33:32 CET 2015
  * XML source: /Users/guilherme/code/617/spotlight/descriptors/PersonDescriptor.xml
  * @generated */
 public class Cinematographer extends Annotation {

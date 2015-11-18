@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Nov 18 13:13:33 CET 2015
+ * Updated by JCasGen Wed Nov 18 13:33:32 CET 2015
  * @generated */
 public class Screenwriter_Type extends Annotation_Type {
   /** @generated 
