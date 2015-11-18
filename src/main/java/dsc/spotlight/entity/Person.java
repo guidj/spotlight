@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Thu Nov 05 13:00:20 CET 2015 */
+/* First created by JCasGen Wed Nov 18 11:13:36 CET 2015 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas; 
@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Nov 05 13:48:14 CET 2015
- * XML source: /Users/guilherme/code/617/spotlight/spotlight/descriptors/PersonDescriptor.xml
+ * Updated by JCasGen Wed Nov 18 11:13:36 CET 2015
+ * XML source: /Users/guilherme/code/617/spotlight/descriptors/PersonDescriptor.xml
  * @generated */
 public class Person extends Annotation {
   /** @generated
@@ -96,6 +96,28 @@ public class Person extends Annotation {
     if (Person_Type.featOkTst && ((Person_Type)jcasType).casFeat_name == null)
       jcasType.jcas.throwFeatMissing("name", "dsc.spotlight.entity.Person");
     jcasType.ll_cas.ll_setStringValue(addr, ((Person_Type)jcasType).casFeatCode_name, v);}    
+   
+    
+  //*--------------*
+  //* Feature: kind
+
+  /** getter for kind - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getKind() {
+    if (Person_Type.featOkTst && ((Person_Type)jcasType).casFeat_kind == null)
+      jcasType.jcas.throwFeatMissing("kind", "dsc.spotlight.entity.Person");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Person_Type)jcasType).casFeatCode_kind);}
+    
+  /** setter for kind - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setKind(String v) {
+    if (Person_Type.featOkTst && ((Person_Type)jcasType).casFeat_kind == null)
+      jcasType.jcas.throwFeatMissing("kind", "dsc.spotlight.entity.Person");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Person_Type)jcasType).casFeatCode_kind, v);}    
   }
 
     

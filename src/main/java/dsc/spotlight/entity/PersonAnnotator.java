@@ -105,7 +105,24 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 			e.printStackTrace();
 		}
 
-		posAid = new POSAid(model, tagger, sentenceDetector);
+		this.posAid = new POSAid(model, tagger, sentenceDetector);
+	}
+	
+	private String getKindOfPerson(String patternString) {
+		System.out.println("patternString: " + patternString);
+		if (patternString.contains("created/VBN by/IN")) {
+			return "Director";
+		} else if (patternString.contains("screenwriter[s]?/NN[S]?")) {
+			return "Screenwriter";
+		} else if (patternString.contains("cinematographer/NN(?: ,/,)?")) {
+			return "Cinematographer";
+		} else if (patternString.contains("played/VBN by/IN") || patternString.contains("([A-z]*)/NNS plays/VBZ")) {
+			return "Actor";
+		} else if (patternString.contains("[A-z]*/NN [A-z]*/NNS plays/VBZ")) {
+			return "FictionalCharactor";
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -115,7 +132,7 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 		String docText = arg0.getDocumentText();
 
 		String[] sentences = posAid.getSentenceDetector().sentDetect(docText);
-		StringBuilder sb = new StringBuilder();
+		StringBuilder nameSB = new StringBuilder();
 
 		for (String sentence : sentences) {
 			String words[] = WhitespaceTokenizer.INSTANCE.tokenize(sentence);
@@ -123,12 +140,11 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 			String[] taggedText = Text.joinByToken(words, tags, "/");
 
-			sb.append(String.join(" ", taggedText));
-			sb.append("\n");
+			nameSB.append(String.join(" ", taggedText));
+			nameSB.append("\n");
 		}
 
-		String annotatedText = sb.toString();
-//		System.out.println(annotatedText);
+		String annotatedText = nameSB.toString();
 
 		for (Pattern pattern : this.patterns) {
 
@@ -148,9 +164,10 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 				Person personAnnotation = new Person(arg0);
 
-				personAnnotation.setBegin(matcher.start());
-				personAnnotation.setEnd(matcher.end());
+				personAnnotation.setBegin(matcher.start(1));
+				personAnnotation.setEnd(matcher.end(matcher.groupCount()));
 				personAnnotation.setName(personName.toString());
+				personAnnotation.setKind(getKindOfPerson(pattern.toString()));
 
 				personAnnotation.addToIndexes(arg0);
 			}

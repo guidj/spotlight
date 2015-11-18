@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Thu Nov 05 13:00:20 CET 2015 */
+/* First created by JCasGen Wed Nov 18 11:13:36 CET 2015 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas;
@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Thu Nov 05 13:48:14 CET 2015
+ * Updated by JCasGen Wed Nov 18 11:13:36 CET 2015
  * @generated */
 public class Person_Type extends Annotation_Type {
   /** @generated 
@@ -69,6 +69,30 @@ public class Person_Type extends Annotation_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_name, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_kind;
+  /** @generated */
+  final int     casFeatCode_kind;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getKind(int addr) {
+        if (featOkTst && casFeat_kind == null)
+      jcas.throwFeatMissing("kind", "dsc.spotlight.entity.Person");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_kind);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setKind(int addr, String v) {
+        if (featOkTst && casFeat_kind == null)
+      jcas.throwFeatMissing("kind", "dsc.spotlight.entity.Person");
+    ll_cas.ll_setStringValue(addr, casFeatCode_kind, v);}
+    
+  
 
 
 
@@ -84,6 +108,10 @@ public class Person_Type extends Annotation_Type {
  
     casFeat_name = jcas.getRequiredFeatureDE(casType, "name", "uima.cas.String", featOkTst);
     casFeatCode_name  = (null == casFeat_name) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_name).getCode();
+
+ 
+    casFeat_kind = jcas.getRequiredFeatureDE(casType, "kind", "uima.cas.String", featOkTst);
+    casFeatCode_kind  = (null == casFeat_kind) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_kind).getCode();
 
   }
 }
