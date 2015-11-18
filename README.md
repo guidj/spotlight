@@ -13,11 +13,11 @@ resources/data/text/pos/
 
 ##Annotation
 
-To execute the annotators with UIMA tools, one needs to configure a few variables regarding the location or descriptor files and other resources.
+To execute the annotators with UIMA tools, one needs to configure a few variables regarding the location of descriptor files and other resources.
 
-  - modelMEFilePath: location of the OpenNLP POS tag pack for English (EN)
+  - **modelMEFilePath**: location of the OpenNLP POS tag pack for English (EN)
 
-  - sentenceMEFilePath: location of the OpenNLP sentence identification pack for English (EN)
+  - **sentenceMEFilePath**: location of the OpenNLP sentence identification pack for English (EN)
   
  You can edit these variables in the [PersonDescriptor.xml](descriptors/PersonDescriptor.xml) file.
 
