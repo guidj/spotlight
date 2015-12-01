@@ -15,6 +15,7 @@ import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
 import opennlp.tools.util.InvalidFormatException;
 
+import org.apache.log4j.Logger;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -24,6 +25,8 @@ import org.apache.uima.resource.ResourceInitializationException;
 import dsc.spotlight.utils.Text;
 
 public class PersonAnnotator extends JCasAnnotator_ImplBase {
+	
+	private final static Logger LOGGER = Logger.getLogger(PersonAnnotator.class.getName());
 
 	class POSAid {
 
@@ -82,10 +85,10 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 		this.patterns = new ArrayList<Pattern>();
 
-		System.out.println(this.getClass().getName() + " is using patterns:");
+		LOGGER.debug(this.getClass().getName() + " is using patterns:");
 		for (String patternString : patternStrings) {
 			this.patterns.add(Pattern.compile(patternString));
-			System.out.println("\t- " + patternString);
+			LOGGER.debug("\t- " + patternString);
 		}
 
 		POSModel model = new POSModelLoader().load(new File(modelMEFilePath));
@@ -119,7 +122,7 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 			this.type = type;
 		}
 
-		private String type() {
+		private String getType() {
 			return type;
 		}
 	}
@@ -146,7 +149,7 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 		// TODO Auto-generated method stub
 
 		String docText = arg0.getDocumentText();
-
+		
 		String[] sentences = posAid.getSentenceDetector().sentDetect(docText);
 		Matcher matcher;
 
@@ -156,6 +159,7 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 		for (String sentence : sentences) {
 
+			LOGGER.debug("Sentence:" + sentence);
 			startOffset = docText.indexOf(sentence);
 
 			String words[] = WhitespaceTokenizer.INSTANCE.tokenize(sentence);
@@ -163,8 +167,11 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 			String[] taggedWords = Text.joinByToken(words, tags, "/");
 			String annotatedSentence = String.join(" ", taggedWords);
+			LOGGER.debug("Annotated: " + annotatedSentence);
 
 			for (Pattern pattern : this.patterns) {
+				
+				LOGGER.debug("\tPattern: " + pattern);
 
 				matcher = pattern.matcher(annotatedSentence);
 
@@ -180,6 +187,8 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 
 					name = personNameSB.toString();
 					personType = getPersonType(pattern.toString());
+					
+					LOGGER.debug("\t\t" + name + " [" + personType.getType() + "]");
 
 					switch (personType) {
 					case ACTOR:
