@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>dsc.spotlight.entity.PersonAnnotator</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>dsc.spotlight.annotators.PersonAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>PersonDescriptor</name>
     <description/>
@@ -64,11 +64,6 @@
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import location="types/ActorTypeSystem.xml"/>
-      <import location="types/CinematographerTypeSystem.xml"/>
-        <import location="types/DirectorTypeSystem.xml"/>
-        <import location="types/FictionalCharacterType.xml"/>
-        <import location="types/ScreenwriterTypeSystem.xml"/>
         <import location="types/PersonTypeSystem.xml"/>
       </imports>
     </typeSystemDescription>

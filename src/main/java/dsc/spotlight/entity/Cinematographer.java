@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Wed Nov 18 12:46:09 CET 2015 */
+/* First created by JCasGen Thu Jan 07 22:08:11 CET 2016 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas; 
@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Nov 18 13:33:32 CET 2015
- * XML source: /Users/guilherme/code/617/spotlight/descriptors/PersonDescriptor.xml
+ * Updated by JCasGen Thu Jan 07 22:08:11 CET 2016
+ * XML source: /Users/guilherme/code/617/spotlight/desc/types/PersonTypeSystem.xml
  * @generated */
 public class Cinematographer extends Annotation {
   /** @generated
@@ -74,6 +74,8 @@ public class Cinematographer extends Annotation {
    */
   private void readObject() {/*default - does nothing empty block */}
      
+ 
+    
   //*--------------*
   //* Feature: name
 

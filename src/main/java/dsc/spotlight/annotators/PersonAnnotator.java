@@ -1,4 +1,4 @@
-package dsc.spotlight.entity;
+package dsc.spotlight.annotators;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,12 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import dsc.spotlight.entity.Actor;
+import dsc.spotlight.entity.Cinematographer;
+import dsc.spotlight.entity.Director;
+import dsc.spotlight.entity.FictionalCharacter;
+import dsc.spotlight.entity.Person;
+import dsc.spotlight.entity.Screenwriter;
 import dsc.spotlight.utils.Text;
 
 public class PersonAnnotator extends JCasAnnotator_ImplBase {

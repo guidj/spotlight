@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Wed Nov 18 13:33:32 CET 2015 */
+/* First created by JCasGen Thu Jan 07 22:08:11 CET 2016 */
 package dsc.spotlight.entity;
 
 import org.apache.uima.jcas.JCas;
@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Wed Nov 18 13:33:32 CET 2015
+ * Updated by JCasGen Thu Jan 07 22:08:11 CET 2016
  * @generated */
 public class Director_Type extends Annotation_Type {
   /** @generated 
