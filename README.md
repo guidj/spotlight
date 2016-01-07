@@ -37,3 +37,8 @@ And the annotationViewer to view the annotations:
 $UIMA_HOME/bin/annotationViewer.sh
 ```
 
+##Building
+
+```
+mvn clean compile assembly:single
+```
