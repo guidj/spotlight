@@ -19,7 +19,7 @@ To execute the annotators with UIMA tools, one needs to configure a few variable
 
   - **sentenceMEFilePath**: location of the OpenNLP sentence identification pack for English (EN)
   
- You can edit these variables in the [PersonDescriptor.xml](descriptors/PersonDescriptor.xml) file.
+ You can edit these variables in the [PersonDescriptor.xml](desc/PersonDescriptor.xml) file.
 
 
 ###Running
