@@ -107,10 +107,12 @@ public class PersonAnnotator extends JCasAnnotator_ImplBase {
 					new File(sentenceMEFilePath)));
 		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
+			throw new RuntimeException(e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
+			throw new RuntimeException(e);
 		}
 
 		this.posAid = new POSAid(model, tagger, sentenceDetector);
