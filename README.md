@@ -1,9 +1,9 @@
-#UIMA: Annotating Movie Reviews
+# UIMA: Annotating Movie Reviews
 
 Using UIMA to annotate names of cinematographers, actors and characters in movie reviews
 
 
-##Data Set
+## Data Set
 Movie review data set by Bo Pang and Lillian Lee. Can be downloaded [here](http://www.cs.cornell.edu/People/pabo/movie-review-data/)
 
 Download the data files, and place the positive review files under the folder:
@@ -11,7 +11,7 @@ Download the data files, and place the positive review files under the folder:
 resources/data/text/pos/
 ```
 
-##Annotation
+## Annotation
 
 To execute the annotators with UIMA tools, one needs to configure a few variables regarding the location of descriptor files and other resources.
 
@@ -22,7 +22,7 @@ To execute the annotators with UIMA tools, one needs to configure a few variable
  You can edit these variables in the [PersonDescriptor.xml](desc/PersonDescriptor.xml) file.
 
 
-###Running
+### Running
 
 You need to have UIMA [properly set up in your environment](https://uima.apache.org/d/uimaj-current/overview_and_setup.html#ugr.ovv.eclipse_setup).
 
@@ -37,7 +37,7 @@ And the annotationViewer to view the annotations:
 $UIMA_HOME/bin/annotationViewer.sh
 ```
 
-##Building
+## Building
 
 ```
 mvn clean compile assembly:single
