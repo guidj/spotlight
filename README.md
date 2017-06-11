@@ -1,4 +1,6 @@
-# UIMA: Annotating Movie Reviews
+# Spotlight
+
+Annotating Movie Reviews with [UIMA](https://uima.apache.org/)
 
 Using UIMA to annotate names of cinematographers, actors and characters in movie reviews
 
